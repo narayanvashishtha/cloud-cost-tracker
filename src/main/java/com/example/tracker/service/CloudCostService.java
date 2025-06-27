@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -66,5 +67,21 @@ public class CloudCostService {
             responseDTO.setCost(cloudCost.getCost());
             return responseDTO;
         }).collect(Collectors.toList());
+    }
+
+    public CloudCost updateCloudCost(Long id, CloudCostRequestDTO requestDTO) throws Exception {
+
+        Optional<CloudCost> existingCost = cloudCostRepository.findById(id);
+        if(!existingCost.isPresent()){
+            throw new Exception("Cloud cost not found.");
+        }
+        CloudCost cloudCost = existingCost.get();
+        cloudCost.setCost(requestDTO.getCost());
+        cloudCost.setServiceName(requestDTO.getServiceName());
+        return cloudCostRepository.save(cloudCost);
+    }
+
+    public void deleteCloudCost(Long id) {
+        cloudCostRepository.deleteById(id);
     }
 }

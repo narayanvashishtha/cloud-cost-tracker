@@ -1,5 +1,7 @@
 package com.example.tracker.dto;
 
+import com.example.tracker.model.CloudCost;
+
 import java.time.LocalDate;
 
 public class CloudCostResponseDTO {
@@ -17,6 +19,12 @@ public class CloudCostResponseDTO {
         this.serviceName = serviceName;
         this.cost = cost;
         this.createdAt = createdAt;
+    }
+
+    public CloudCostResponseDTO(CloudCost cloudCost){
+        this.id = cloudCost.getId();
+        this.cost = cloudCost.getCost();
+        this.serviceName = cloudCost.getServiceName();
     }
 
     //Getters and Setters
