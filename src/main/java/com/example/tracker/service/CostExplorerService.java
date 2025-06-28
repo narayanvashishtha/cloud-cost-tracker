@@ -3,7 +3,13 @@ package com.example.tracker.service;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.services.costexplorer.AWSCostExplorer;
 import com.amazonaws.services.costexplorer.AWSCostExplorerClientBuilder;
-import com.amazonaws.services.costexplorer.model.*;
+import com.amazonaws.services.costexplorer.model.DateInterval;
+import com.amazonaws.services.costexplorer.model.GetCostAndUsageRequest;
+import com.amazonaws.services.costexplorer.model.GetCostAndUsageResult;
+import com.amazonaws.services.costexplorer.model.Group;
+import com.amazonaws.services.costexplorer.model.GroupDefinition;
+import com.amazonaws.services.costexplorer.model.GroupDefinitionType;
+import com.amazonaws.services.costexplorer.model.ResultByTime;
 import com.example.tracker.model.CloudCost;
 import com.example.tracker.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +40,10 @@ public class CostExplorerService {
                 .build();
 
         GetCostAndUsageRequest request = new GetCostAndUsageRequest()
-                .withTimePeriod(new TimePeriod()
+                .withTimePeriod(new DateInterval()
                         .withStart(startDate.format(DateTimeFormatter.ISO_DATE))
                         .withEnd(endDate.format(DateTimeFormatter.ISO_DATE)))
-                .withGranularity(Granularity.DAILY)
+                .withGranularity("DAILY")
                 .withMetrics("UnblendedCost")
                 .withGroupBy(new GroupDefinition().withType(GroupDefinitionType.DIMENSION).withKey("SERVICE"),
                         new GroupDefinition().withType(GroupDefinitionType.DIMENSION).withKey("REGION"),
