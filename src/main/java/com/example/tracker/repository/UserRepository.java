@@ -1,13 +1,12 @@
 package com.example.tracker.repository;
 
-import com.example.tracker.model.CloudCost;
 import com.example.tracker.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface CloudCostRepository extends JpaRepository<CloudCost, Long> {
-    List<CloudCost> findByUser(User user);
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
 }
