@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-costexplorer</artifactId>
-			<version>1.12.250</version> <!-- Latest stable version -->
+			<version>1.12.761</version> <!-- Latest stable version -->
 			<exclusions>
 				<exclusion>
 					<groupId>software.amazon.ion</groupId>
@@ -71,7 +71,7 @@
 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-sts</artifactId>
-			<version>1.12.250</version> <!-- Use the same version as other AWS SDKs -->
+			<version>1.12.761</version> <!-- Use the same version as other AWS SDKs -->
 		</dependency>
 	</dependencies>
 
